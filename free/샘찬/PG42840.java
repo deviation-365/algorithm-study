@@ -1,3 +1,5 @@
+package level1;
+
 import java.util.Arrays;
 
 public class PG42840 {
@@ -11,29 +13,28 @@ public class PG42840 {
         int[] first = {1, 2, 3, 4, 5};
         int[] second = {2, 1, 2, 3, 2, 4, 2, 5};
         int[] third = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
-        int[] indexes = {0, 0, 0};
         int[] collects = {0, 0, 0};
-        for (int answer : answers) {
-            if (first[indexes[0]++] == answer) {
+        for (int i = 0; i < answers.length; i++) {
+            if (first[i % first.length] == answers[i]) {
                 collects[0]++;
             }
-            if (second[indexes[1]++] == answer) {
+            if (second[i % second.length] == answers[i]) {
                 collects[1]++;
             }
-            if (third[indexes[2]++] == answer) {
+            if (third[i % third.length] == answers[i]) {
                 collects[2]++;
             }
-            if (indexes[0] == 5) indexes[0] = 0;
-            if (indexes[1] == 8) indexes[1] = 0;
-            if (indexes[2] == 10) indexes[2] = 0;
         }
 
-        int[] clone = collects.clone();
-        Arrays.sort(clone);
         int resultSize = 1;
-        int maxValue = clone[2];
-        for (int i = clone.length - 1; i > 0; i--) {
-            if (maxValue == clone[i - 1]) {
+        int maxValue = collects[0];
+        for (int i = 1; i < collects.length; i++) {
+            if (collects[i] > maxValue) {
+                resultSize = 1;
+                maxValue = collects[i];
+                continue;
+            }
+            if (maxValue == collects[i]) {
                 resultSize++;
             }
         }
