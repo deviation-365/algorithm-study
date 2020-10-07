@@ -1,5 +1,4 @@
-  #https://programmers.co.kr/learn/courses/30/lessons/17681
-
+#https://programmers.co.kr/learn/courses/30/lessons/17681
 def solution(n, arr1, arr2):
     '''
         이진수로 변환이 필요한 문제이다.
